@@ -4,30 +4,34 @@
 #define MAX_NUM 10000
 
 void merge(int arr[], int left, int mid, int right, int s[]) {
-	for (int i = left; i < right; ++i) {
+	for (int i = left; i <= right; ++i) {
 		s[i] = arr[i];
 	}
 	int i_left = left;
 	int i_right = mid + 1;
-	for (int k = l; k <= r; ++k) {
+	for (int k = left; k <= right; ++k) {
 		if (i_left > mid) {
-			A[k] = S[i_right];
+			arr[k] = s[i_right];
 			i_right++;
 		} else if (i_right > right) {
-			A[k] = S[i_left];
+			arr[k] = s[i_left];
 			i_left++;
-		} else if (S[i_left] <= S[i_right]) {
-			A[k] = S[i_left];
+		} else if (s[i_left] <= s[i_right]) {
+			arr[k] = s[i_left];
 			i_left++;
 		} else {
-			A[k] = S[i_right];
+			arr[k] = s[i_right];
 			i_right++;
 		}
 	}
 
 }
 
-void mergesort(int arr[], int n, int left, int right, int s[]) {
+void mergesort(int arr[], int n, int left, int right, int *s) {
+	s = new int[n];
+	for (int i = 0; i < n; ++i) {
+		s[i] = i;
+	}
 	if (right <= left) return;
 	int mid = (right + left) / 2;
 	mergesort(arr, n, left, mid, s);
@@ -43,8 +47,16 @@ int main() {
 		arr[n] = num;
 		n++;
 	}
-	
 
-	mergesort
+	mergesort(arr, n, 0, n - 1, nullptr);
+	
+	for (int i = 0; i < n; ++i) {
+		std::cout << arr[i];
+		if (i + 1 < n) {
+			std::cout << " ";			
+		} else {
+			std::cout << std::endl;
+		}
+	}
 	return 0;
 }
