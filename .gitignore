@@ -1,3 +1,4 @@
 *.o
 *.exe
 Gen_Algs/mergesort/mergesort
+!Gen_Algs/**/*.cpp
