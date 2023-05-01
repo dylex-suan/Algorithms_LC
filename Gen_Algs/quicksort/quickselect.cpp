@@ -73,13 +73,16 @@ int partition_old(int a[], int p, int n) {
 	return x;
 }
 
-// O(n log n) worst case
-void quicksort(int arr[], int n, int left, int right) {
-	if (n <= 1) return;
+// k is some integer
+int quickselect(int arr[], int k, int n, int left, int right) {
 	int p = choose_pivot(right);
 	int i = partition_new(arr, p, n, left, right);
-	quicksort(arr, i, 0, i - 1);
-	quicksort(arr, (n-1) - i, i + 1, n - 1);
+	if (i == k) return arr[i];
+	if (i > k) {
+		return quickselect(arr, k, n, 0, i-1);
+	} else {
+		return quickselect(arr, k - (i + 1), n, i+1, n-1);
+	}
 }
 
 int main() {
@@ -87,14 +90,16 @@ int main() {
 	int num, k, pivot;
 	int n = 0;
 
+	std::cout << "What index do you want to look at? ";
+	std::cin >> pivot;
 	std::cout << "Enter your numbers: ";
 	while (std::cin >> num) {
 		A[n] = num;
 		n++;
 	}
 
-	quicksort(A, n, 0, n-1); // quicksort algo
-
+	// int part = partition_old(A, pivot, n); // pivot will be at the end of the array (last element)
+	int part = quickselect(A, pivot, n, 0, n - 1);
 	std::cout << "Here's what's A looks like now: ";
 	for (int i = 0; i < n; ++i) {
 		std::cout << A[i];
@@ -104,5 +109,6 @@ int main() {
 			std::cout << std::endl;
 		}
 	}
+	std::cout << "This is the element that belongs at " << pivot << ": " << arr[pivot] << std::endl;
 	return 0;
 }
