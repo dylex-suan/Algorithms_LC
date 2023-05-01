@@ -3,7 +3,12 @@
 
 #define MAX_NUMS 10000
 
+int choose_pivot(int n) {
+	return n - 1; // choose the rightmost pivot in the array
+}
+
 int partition(int a[], int p, int n) {
+	// how to partition?
 	std::vector<int> smaller;
 	std::vector<int> equal;
 	std::vector<int> larger;
@@ -52,7 +57,9 @@ int main() {
 		n++;
 	}
 
-	int part = partition(A, n/2, n); // some random pivot I suppose for p
+	// 1. run the partition
+	int pivot = choose_pivot(n);
+	int part = partition(A, pivot, n); // pivot will be at the end of the array (last element)
 	std::cout << "Here's what's A looks like now: ";
 	for (int i = 0; i < n; ++i) {
 		std::cout << A[i];
