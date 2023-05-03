@@ -1,4 +1,6 @@
 *.o
 *.exe
 Gen_Algs/mergesort/mergesort
+!CTCI/**/*.cpp
 !Gen_Algs/**/*.cpp
+
