@@ -1,4 +1,5 @@
 // implement our own sorting algorithm
+// O(n log n) runtime, O(1) auxillary space
 #include <iostream>
 #include <string>
 
